@@ -1,0 +1,23 @@
+.scroller-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  @keyframes scroll {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(calc(-50% - 0.5rem));
+    }
+  }
+  
+  .scroller {
+    animation: scroll var(--animation-duration, 20s) linear infinite;
+    animation-direction: var(--animation-direction, normal);
+    will-change: transform;
+  }
+  
+  .scroller:hover {
+    animation-play-state: var(--hover-state, running);
+  }
