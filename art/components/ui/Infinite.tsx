@@ -88,7 +88,7 @@ export const InfiniteMovingCards = ({
         className={cn(
           "scroller-container relative z-20 w-full h-screen overflow-hidden",
           className,
-          enlargedImage && "blur-sm" // Optional: blur background when image is enlarged
+          enlargedImage && "blur-sm" 
         )}
       >
         <ul
@@ -99,7 +99,7 @@ export const InfiniteMovingCards = ({
           )}
         >
           {[...items, ...items].map((item, idx) => (
-            <li className="flex-shrink-0 flex justify-center" key={idx}>
+            <li className="flex-shrink-0 flex" key={idx}>
               <button 
                 onClick={() => handleImageClick(item.imagePath)}
                 className="hover:scale-105 transition-transform duration-200"
@@ -120,8 +120,8 @@ export const InfiniteMovingCards = ({
 
       {/* Enlarged Image Modal */}
       {enlargedImage && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-0">
-          <div className="relative max-w-4xl max-h-[90vh]">
+        <div className="fixed inset-0 z-50 flex bg-white bg-opacity-0">
+          <div className="relative max-w-4xl max-h-[90vh] ">
             <Image
               src={enlargedImage}
               alt="Enlarged view"

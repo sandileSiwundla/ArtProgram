@@ -1,69 +1,41 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Image from "next/image";
 import { InfiniteMovingCards } from "@/components/ui/Infinite";
 
 export default function Home() {
-  const images = [
-    "/1.jpeg",
-    "/2.jpg",
-    "/3.jpg",
-    "/4.jpg",
-    "/5.jpg",
-    "/6.jpg",
-  ];
   const images2 = [
-    {
-      imagePath:"/1.jpeg",
-    },
-    {
-      imagePath:"/2.jpg",
-
-    },
-    {
-      imagePath:"/3.jpg",
-    },
-    {
-      imagePath:"/4.jpg",
-
-    },
-    {
-      imagePath:"/5.jpg",
-    },
-    {
-      imagePath:"/6.jpg",
-    },
+    { imagePath: "/1.jpeg" },
+    { imagePath: "/2.jpg" },
+    { imagePath: "/3.jpg" },
+    { imagePath: "/4.jpg" },
+    { imagePath: "/5.jpg" },
+    { imagePath: "/6.jpg" },
   ];
-
-  const [currentIndex, setCurrentIndex] = useState(0); // Keep track of the current image index
-
-  // Auto-scroll interval time (in milliseconds)
-  const intervalTime = 3000;
-
-  // Handle the carousel logic: automatically change images
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentIndex((prevIndex) =>
-        prevIndex < images.length - 1 ? prevIndex + 1 : 0
-      );
-    }, intervalTime);
-
-    // Clear the interval on component unmount
-    return () => clearInterval(intervalId);
-  }, []); // Empty dependency array ensures this effect runs only once when the component is mounted
 
   return (
-    <div className="bg-gray-100 !min-h-screen flex justify-center items-center">
-      <main className="pl-14">
-        <div className="relative">
-          <InfiniteMovingCards
-            items={images2}
-            direction="up"
-            speed="fast"
-          />
+    <div className="min-h-screen bg-white overflow-x-hidden"> {/* Hide horizontal overflow */}
+      <main className="pl-2">
+        {/* Container with fixed width to force overflow */}
+        <div className="w-[125%]"> {/* 6 visible + 2 partial = 125% width */}
+          
+          {/* Flex container that will overflow */}
+          <div className="flex gap-1">
+            {[...Array(8)].map((_, i) => ( // 8 carousels total
+              <div 
+                key={i} 
+                className="relative w-[12.5%] flex-shrink-0" // Each takes 1/8th of space
+              >
+                <InfiniteMovingCards
+                  items={images2}
+                  direction="up"
+                  speed="fast"
+                  className="h-[100vh]"
+                />
+              </div>
+            ))}
+          </div>
+          
         </div>
-        
       </main>
     </div>
   );
