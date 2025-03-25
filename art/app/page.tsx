@@ -19,7 +19,7 @@ export default function Home() {
         <div className="w-[125%]"> {/* 6 visible + 2 partial = 125% width */}
           
           {/* Flex container that will overflow */}
-          <div className="flex gap-1">
+          <div className="flex gap--2">
             {[...Array(8)].map((_, i) => ( // 8 carousels total
               <div 
                 key={i} 

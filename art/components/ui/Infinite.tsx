@@ -86,7 +86,7 @@ export const InfiniteMovingCards = ({
       <div
         ref={containerRef}
         className={cn(
-          "scroller-container relative z-20 w-full h-screen overflow-hidden",
+          "scroller-container relative z-20 w-full h-screen overflow-hidden  [mask-image:linear-gradient(to_left,transparent,blue_20%,white_80%,transparent)]",
           className,
           enlargedImage && "blur-sm" 
         )}
@@ -94,7 +94,7 @@ export const InfiniteMovingCards = ({
         <ul
           ref={scrollerRef}
           className={cn(
-            "scroller min-h-full w-full flex flex-col gap-4",
+            "scroller min-h-full w-full flex flex-col gap-2",
             pauseOnHover && "hover:[animation-play-state:paused]"
           )}
         >
@@ -102,7 +102,7 @@ export const InfiniteMovingCards = ({
             <li className="flex-shrink-0 flex" key={idx}>
               <button 
                 onClick={() => handleImageClick(item.imagePath)}
-                className="hover:scale-105 transition-transform duration-200"
+                className="hover:scale-105 transition-transform duration-200 "
               >
                 <Image
                   src={item.imagePath}
@@ -110,7 +110,7 @@ export const InfiniteMovingCards = ({
                   width={180}
                   height={300}
                   priority
-                  className="my-2"
+                  className=""
                 />
               </button>
             </li>
@@ -120,14 +120,14 @@ export const InfiniteMovingCards = ({
 
       {/* Enlarged Image Modal */}
       {enlargedImage && (
-        <div className="fixed inset-0 z-50 flex bg-white bg-opacity-0">
-          <div className="relative max-w-4xl max-h-[90vh] ">
+        <div className="fixed inset-0 z-50 flex backdrop-blur-2xl bg-transparent bg-opacity-0">
+          <div className="relative">
             <Image
               src={enlargedImage}
               alt="Enlarged view"
               width={1200}
               height={1800}
-              className="object-contain max-h-[90vh]"
+              className="object-contain max-h-[90vh] justify-center"
             />
             <button
               onClick={closeEnlargedImage}

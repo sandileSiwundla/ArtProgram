@@ -18,6 +18,12 @@
     will-change: transform;
   }
   
-  .scroller:hover {
+  /* .scroller:hover {
     animation-play-state: var(--hover-state, running);
-  }
+  } */
+
+    /* Pause on hover */
+    .scroller:hover {
+    animation-play-state: paused;
+}
+      
