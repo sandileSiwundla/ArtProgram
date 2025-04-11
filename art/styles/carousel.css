@@ -26,4 +26,7 @@
     .scroller:hover {
     animation-play-state: paused;
 }
-      
+/* Add to your CSS */
+.backdrop-blur-lg {
+    backdrop-filter: blur(8px);
+  }

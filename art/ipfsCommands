@@ -1,0 +1,56 @@
+IPFS COMMAND CHEAT SHEET
+=======================
+
+1. ADDING & PINNING DATA
+------------------------
+ipfs add <file>                 - Add file to IPFS (not pinned by default in newer versions)
+ipfs add --pin <file>           - Add and pin file (store permanently)
+ipfs add --pin -r <directory>   - Add directory recursively and pin all files
+ipfs pin add <CID>              - Pin existing CID to prevent garbage collection
+ipfs pin rm <CID>               - Unpin a CID (makes it eligible for GC)
+ipfs pin ls                     - List all pinned CIDs
+ipfs pin ls --type=recursive    - List recursively pinned CIDs
+
+2. REPOSITORY MANAGEMENT
+-------------------------
+ipfs repo gc                   - Run garbage collection (delete unpinned data)
+ipfs repo stat                 - Show repo size and storage stats
+ipfs repo verify               - Check for repository corruption
+
+3. REMOTE PINNING (BACKUP)
+--------------------------
+ipfs pin remote add --service=pinata <CID>       - Pin CID to Pinata service
+ipfs pin remote add --service=pinata --ttl=30d <CID> - Pin with 30-day expiration
+ipfs pin remote ls --service=pinata              - List remotely pinned CIDs
+
+4. NODE MANAGEMENT
+------------------
+ipfs daemon                   - Start IPFS node
+ipfs shutdown                 - Stop IPFS node
+ipfs id                       - Show node's peer ID and addresses
+ipfs config Addresses.API /ip4/0.0.0.0/tcp/5001 - Allow remote API access
+
+5. DATA RETRIEVAL
+-----------------
+ipfs get <CID>                - Download file/directory
+ipfs cat <CID>                - Print file contents to terminal
+ipfs ls <CID>                 - List files in directory CID
+
+6. ADVANCED COMMANDS
+--------------------
+ipfs object stat <CID>        - Show object size and type
+ipfs refs local               - List all locally stored CIDs
+ipfs swarm peers              - List connected peers
+ipfs bootstrap list          - Show default bootstrap nodes
+
+7. NUCLEAR OPTIONS (CAUTION!)
+-----------------------------
+ipfs pin ls --type=recursive | cut -d' ' -f1 | xargs -n1 ipfs pin rm - Unpin EVERYTHING
+rm -rf ~/.ipfs                - Delete entire IPFS repo (Linux/Mac)
+rmdir /s /q %APPDATA%\IPFS    - Delete entire IPFS repo (Windows)
+ipfs init                     - Reinitialize fresh IPFS repo
+
+NOTES:
+- Pinned data survives garbage collection
+- 'ipfs repo gc' only removes unpinned data
+- Remote pinning (Pinata) keeps data available when your node is offline
