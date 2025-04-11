@@ -3,7 +3,7 @@
 import { InfiniteMovingCards } from "@/components/ui/Infinite";
 import { useEffect, useState } from "react";
 
-const ALL_DIRECTORIES = Array.from({ length: 15 }, (_, i) => `art${i + 1}`);
+const ALL_DIRECTORIES = Array.from({ length: 14 }, (_, i) => `art${i + 1}_avif`);
 
 export default function Home() {
   const [carousels, setCarousels] = useState<{imagePath: string; imageNumber: number}[][]>([]);
@@ -13,8 +13,8 @@ export default function Home() {
   // Create image paths for a directory
   const createVerifiedImagePaths = (dir: string) => {
     const images = [];
-    for (let i = 1; i <= 50; i++) {
-      const imagePath = `/art/${dir}/${i}.jpg`;
+    for (let i = 1; i <= 10; i++) {
+      const imagePath = `/art/${dir}/${i}.avif`;
       const thumbnailPath = imagePath; // For now, thumbnail is the same as image
       images.push({ imagePath, imageNumber: i, thumbnailPath });
     }
@@ -74,7 +74,7 @@ export default function Home() {
                   <InfiniteMovingCards
                     items={carouselImages}
                     direction="up"
-                    speed="slow"
+                    speed="normal"
                     className="h-[100vh]"
                   />
                 </div>

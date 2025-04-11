@@ -16,12 +16,14 @@ export const InfiniteMovingCards = ({
   speed = "fast",
   pauseOnHover = true,
   className,
+  quality = 50,
 }: {
   items: CardItem[];
   direction?: "up" | "down";
   speed?: "fast" | "normal" | "slow";
   pauseOnHover?: boolean;
   className?: string;
+  quality?: number;
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollerRef = useRef<HTMLUListElement>(null);
@@ -87,9 +89,9 @@ export const InfiniteMovingCards = ({
     let baseDuration;
     switch (speed) {
       case "fast": baseDuration = 180; break;
-      case "normal": baseDuration = 1000; break;
-      case "slow": baseDuration = 1000; break;
-      default: baseDuration = 1000;
+      case "normal": baseDuration = 100; break;
+      case "slow": baseDuration = 100; break;
+      default: baseDuration = 100;
     }
     
     containerRef.current.style.setProperty(
@@ -170,7 +172,7 @@ export const InfiniteMovingCards = ({
           )}
         >
           {items.map((item, idx) => (
-            <li className="flex-shrink-0 flex shadow-sm rounded-md" key={`${item.imagePath}-${idx}`}>
+            <li className="flex-shrink-0 flex" key={`${item.imagePath}-${idx}`}>
               <button 
                 onClick={() => handleImageClick(item.imagePath)}
                 className="hover:scale-105 transition-transform duration-200 rounded-md"
@@ -184,6 +186,7 @@ export const InfiniteMovingCards = ({
                   style={{ width: '100%', height: 'auto' }}
                   priority={idx < 5}
                   loading={idx > 10 ? "lazy" : "eager"}
+                  quality={quality}
                 />
               </button>
             </li>
@@ -230,4 +233,4 @@ export const InfiniteMovingCards = ({
       )}
     </>
   );
-};
+}
